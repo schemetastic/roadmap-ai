@@ -1,0 +1,106 @@
+:root {
+    background-color: #252525;
+    color: #151515;
+    --font-ui: "Boogaloo", serif;
+    --font-text: "Dekko", serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-ui);
+}
+
+.gameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100vw;
+}
+
+.gameBox {
+    position: relative;
+    width: 1024px;
+    height: 768px;
+    background-color: white;
+}
+
+.screenContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1024px;
+    height: 768px;
+    background-color: white;
+}
+
+.screen {
+    width: 1024px;
+    height: 768px;
+    background-image: var(--bg);
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+.x-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.y-center {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.xy-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: var(--btn-bg, #101010);
+    border: none;
+    font-size: var(--btn-font, 24px);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: scale ease-in-out 0.2s, background-color ease-in-out 0.2s;
+}
+
+.button:hover {
+    background-color: var(--btn-h-bg, #252525);
+    scale: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
