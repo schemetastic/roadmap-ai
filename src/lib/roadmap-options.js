@@ -1,14 +1,14 @@
 
 
 export const roadmapFields = {
-    "Frontend": "Frontend developer",
-    "Backend": "Backend developer",
-    "Software Engineering": "Software engineer",
-    "Data Science": "Data scientist",
-    "UI/UX": "UI/UX designer",
-    "Cybersecurity": "Cybersecurity analyst",
-    "Cloud Computing": "Cloud engineer",
-    "DevOps": "DevOps engineer",
-    "Marketing": "Marketing specialist",
-    "Entrepreneurship": "Entrepreneur",
+    "frontend": "Frontend developer",
+    "backend": "Backend developer",
+    "software-engineering": "Software engineer",
+    "data-science": "Data scientist",
+    "ui-ux": "UI/UX designer",
+    "cybersecurity": "Cybersecurity analyst",
+    "cloud-computing": "Cloud engineer",
+    "devops": "DevOps engineer",
+    "marketing": "Marketing specialist",
+    "entrepreneurship": "Entrepreneur",
 }

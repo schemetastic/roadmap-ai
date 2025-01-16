@@ -1,10 +1,15 @@
 <script>
     import { onMount } from "svelte";
-    import { roadmap, currentScreen, isLoading } from "../state.svelte";
+    import {
+        roadmap,
+        currentScreen,
+        isLoading,
+        selectedField,
+    } from "../state.svelte";
 
     let loadingText = "Loading...";
     onMount(async () => {
-        const response = await fetch("/get-roadmap/");
+        const response = await fetch(`/get-roadmap/?field=${$selectedField}`);
         const data = await response.json();
         if (data.hasError) {
             loadingText = "There was an error with the request, try again.";

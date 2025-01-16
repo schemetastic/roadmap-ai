@@ -19,6 +19,11 @@
                 <HomeScreen />
             </div>
         {/if}
+        {#if $currentScreen == "roadmap"}
+            <div class="screenContainer" transition:fade={{ duration: 300 }}>
+                <RoadmapScreen />
+            </div>
+        {/if}
     </div>
 </div>
 

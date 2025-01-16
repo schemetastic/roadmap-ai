@@ -2,6 +2,7 @@
 import { writable } from "svelte/store";
 
 export const roadmap = writable(null);
+export const selectedField = writable(null);
 export let currentScreen = writable("home");
 
 export const isLoading = writable(false);

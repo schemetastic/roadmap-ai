@@ -5,8 +5,9 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "npx vite build",
-		"preview": "vite preview"
+		"build": "vite build",
+		"preview": "vite preview",
+		"start": "npm run preview"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",

@@ -1,11 +1,12 @@
 <script>
     import { roadmapFields } from "./roadmap-options";
     import Load from "./Load.svelte";
-    import { isLoading } from "../state.svelte";
+    import { isLoading, selectedField } from "../state.svelte";
 
     let loading = false;
 
-    function handleClick(selectedField) {
+    function handleClick(field) {
+        selectedField.set(field);
         isLoading.set(true);
     }
 </script>
@@ -21,7 +22,7 @@
                 class="button"
                 on:click={() => {
                     handleClick(field);
-                }}>{field}</button
+                }}>{roadmapFields[field]}</button
             >
         {/each}
     </div>
