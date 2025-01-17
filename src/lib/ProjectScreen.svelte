@@ -48,14 +48,7 @@
         decreaseBy = 4;
         intervalMs = 80;
         canClickSkillBtn.set(false);
-        canClickSkillBtn.subscribe((canClick) => {
-            if (canClick) {
-                dialog.title = "You've patched all the insecurity holes!";
-                dialog.message =
-                    "Great job! Now you can continue applying your skills to fill the energy meter.";
-                dialog.visible = true;
-            }
-        });
+
         dialog.title =
             "You are almost there! But... it looks like something happens to your energy meter!";
         dialog.message =
