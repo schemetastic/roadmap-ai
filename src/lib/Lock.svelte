@@ -33,9 +33,13 @@
         background-size: 200% auto;
         background-position-x: var(--bg-x);
         border: none;
+        border-radius: 5px;
         background-color: transparent;
         width: 111px;
         height: 150px;
+    }
+    button:focus {
+        outline: 2px dashed rgba(0, 0, 0, 0.35);
     }
     .scale-opacity {
         transition:

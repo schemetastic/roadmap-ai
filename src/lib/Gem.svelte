@@ -44,6 +44,7 @@
         background-color: transparent;
         width: var(--size);
         height: var(--size);
+        border-radius: 5px;
     }
     .scale {
         transition: scale ease-in-out 0.2s;
@@ -52,6 +53,9 @@
     .scale:hover,
     .scale:focus {
         scale: 1.1;
+    }
+    button:focus {
+        outline: 2px dashed rgba(0, 0, 0, 0.35);
     }
     .scale-opacity {
         transition:
