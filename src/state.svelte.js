@@ -15,6 +15,7 @@ export const levels = $state({
     oneComplete: false,
     twoComplete: false,
     threeComplete: false,
+    current: 0
 });
 
 export const dialog = $state({

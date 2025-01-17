@@ -1,5 +1,6 @@
 <script>
     import Gem from "./Gem.svelte";
+    import Lock from "./Lock.svelte";
     import {
         collectedGems,
         roadmap,
@@ -25,7 +26,6 @@
         { x: 613, y: 493 },
     ];
 
-    canFinishGame.set(true);
     collectedGems.subscribe((gems) => {
         if (gems === 3 && !levels.oneComplete) {
             canAdvance.set(false);
@@ -80,14 +80,30 @@
                   : "default"}
         />
     {/each}
-    <!--<Gem
-        xVariant="0"
-        yVariant="0"
-        yPos="20"
-        xPos="40"
-        hoverAnim="scale-opacity"
-        canClick={true}
-    />-->
+    {#if !levels.oneComplete}
+        <Lock
+            xPos={520}
+            yPos={120}
+            xVariant={$collectedGems === 3 ? 1 : 0}
+            playLevel={1}
+        />
+    {/if}
+    {#if !levels.twoComplete}
+        <Lock
+            xPos={280}
+            yPos={280}
+            xVariant={$collectedGems === 7 ? 1 : 0}
+            playLevel={2}
+        />
+    {/if}
+    {#if !levels.threeComplete}
+        <Lock
+            xPos={780}
+            yPos={460}
+            xVariant={$collectedGems === 12 ? 1 : 0}
+            playLevel={3}
+        />
+    {/if}
 
     <button
         class="button x-center"

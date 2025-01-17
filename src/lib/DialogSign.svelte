@@ -6,13 +6,19 @@
     });
     function handleClose() {
         if (dialog.closeAction == "collect-gem") {
+            dialog.closeAction = "none";
             collectedGems.update((gems) => {
                 gems++;
                 return gems;
             });
         }
         if (dialog.closeAction == "outro") {
+            dialog.closeAction = "none";
             currentScreen.set("outro");
+        }
+        if (dialog.closeAction == "go-to-roadmap") {
+            dialog.closeAction = "none";
+            currentScreen.set("roadmap");
         }
         dialog.visible = false;
         dialog.type = "text";

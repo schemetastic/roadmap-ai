@@ -1,0 +1,185 @@
+<script>
+    import { onMount } from "svelte";
+    import MachineGem from "./MachineGem.svelte";
+    import { dialog, levels, canAdvance, canFinishGame } from "../state.svelte";
+
+    const barMaxWidth = 523;
+    let progress = 0;
+
+    let multiplier = null;
+    let decreaseBy = null;
+    let intervalMs = null;
+    let canClickBtn = true;
+    let interValCleared = false;
+    let completedLevel = false;
+    let xVariant = levels.current - 1;
+    let yVariant = 1;
+
+    let interval = null;
+
+    if (levels.current === 1) {
+        multiplier = 15;
+        decreaseBy = 2;
+        intervalMs = 100;
+    }
+    if (levels.current === 2) {
+        multiplier = 12;
+        decreaseBy = 4;
+        intervalMs = 90;
+    }
+    if (levels.current === 3) {
+        multiplier = 10;
+        decreaseBy = 4;
+        intervalMs = 80;
+    }
+
+    onMount(() => {
+        interval = setInterval(() => {
+            if (progress > 0) {
+                progress -= decreaseBy;
+
+                if (progress < 0) progress = 0;
+            }
+            if (progress >= 100) {
+            }
+        }, intervalMs);
+    });
+
+    function handleApplySkill() {
+        if (!canClickBtn) return;
+
+        progress += multiplier;
+
+        if (progress >= 100) {
+            progress = 100;
+            if (!interValCleared) {
+                completeLevel();
+                interValCleared = true;
+                clearInterval(interval);
+            }
+            return;
+        }
+    }
+
+    function completeLevel() {
+        completedLevel = true;
+        progress = 100;
+        setTimeout(() => {
+            yVariant = 2;
+        }, 3000);
+        setTimeout(() => {
+            dialog.title = "It looks like you've created something!";
+            if (levels.current === 1) {
+                levels.oneComplete = true;
+                dialog.message =
+                    "Hurray! You finished your first project, but the next is a bit tougher. Are you up for the challenge?";
+            }
+            if (levels.current === 2) {
+                levels.twoComplete = true;
+                dialog.message =
+                    "Great job! When the imposter syndrome hits, you have to keep pushing! You're halfway the road!";
+            }
+            if (levels.current === 3) {
+                levels.threeComplete = true;
+                dialog.message =
+                    "Amazing! When you feel insecure about your skills, always take a look to what you have achieved to remember who you are and what you can do. And that's it, now a little surprise awaits you! 🎉";
+                canFinishGame.set(true);
+            }
+            canAdvance.set(true);
+            dialog.visible = true;
+            dialog.closeAction = "go-to-roadmap";
+        }, 7300);
+    }
+</script>
+
+<div class="screen" style="--bg: url(/img/project-bg.webp)">
+    <h1>
+        Project: {levels.current === 1
+            ? "Small"
+            : levels.current === 2
+              ? "Medium"
+              : "Large"}
+    </h1>
+    <h2>Energy Meter</h2>
+    <div
+        class="bar"
+        style={`--width: ${(progress * (barMaxWidth / 100)).toFixed()}px`}
+    ></div>
+    <button
+        aria-label="Press repeatedly"
+        class="skillBtn"
+        on:click={() => {
+            handleApplySkill();
+        }}
+    >
+        Apply Skill
+    </button>
+    <MachineGem
+        {xVariant}
+        xPos={590}
+        yPos={330}
+        float={true}
+        opacity={completedLevel ? 0 : 0.9}
+    />
+    <MachineGem
+        {xVariant}
+        {yVariant}
+        xPos={590}
+        yPos={330}
+        float={true}
+        bright={completedLevel}
+        opacity={progress / 100}
+        zIndex={2}
+    />
+</div>
+
+<style>
+    h1 {
+        color: white;
+        font-size: 38px;
+        position: absolute;
+        bottom: 100px;
+        right: 205px;
+        width: 230px;
+        text-align: center;
+    }
+    h2 {
+        color: white;
+        font-size: 32px;
+        position: absolute;
+        top: 140px;
+        left: 140px;
+        width: 175px;
+        text-align: left;
+    }
+    .skillBtn {
+        background-color: #192369;
+        color: white;
+        border: 2px solid #ffcc00;
+        border-radius: 5px;
+        position: absolute;
+        bottom: 150px;
+        left: 152px;
+        mix-blend-mode: multiply;
+        font-size: 32px;
+        padding: 15px 20px;
+        cursor: pointer;
+    }
+    .skillBtn:hover,
+    .skillBtn:focus {
+        background-color: #ffcc00;
+        color: #192369;
+        border: 2px solid #192369;
+    }
+    .bar {
+        position: absolute;
+        top: 147px;
+        left: 363px;
+        width: var(--width);
+        height: 20px;
+        border-radius: 20px;
+        mix-blend-mode: lighten;
+        background-color: #ff0081;
+        transition: width ease-in-out 0.15s;
+    }
+</style>

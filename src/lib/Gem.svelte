@@ -49,7 +49,8 @@
         transition: scale ease-in-out 0.2s;
         scale: 1;
     }
-    .scale:hover {
+    .scale:hover,
+    .scale:focus {
         scale: 1.1;
     }
     .scale-opacity {
@@ -59,7 +60,8 @@
         scale: 1;
         opacity: 0.85;
     }
-    .scale-opacity:hover {
+    .scale-opacity:hover,
+    .scale-opacity:focus {
         transition:
             scale ease-in-out 0.2s,
             opacity ease-in-out 0.2s;
