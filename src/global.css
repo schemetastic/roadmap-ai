@@ -41,6 +41,22 @@
     width: 1024px;
     height: 768px;
     background-image: var(--bg);
+    user-select: none;
+}
+
+.dialogContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1024px;
+    height: 768px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-image: url(/img/sign-bg.webp);
+    backdrop-filter: blur(5px);
 }
 
 @keyframes floating {

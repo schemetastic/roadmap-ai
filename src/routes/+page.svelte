@@ -6,6 +6,7 @@
     import HomeScreen from "$lib/HomeScreen.svelte";
     import RoadmapScreen from "$lib/RoadmapScreen.svelte";
     import DialogSign from "$lib/DialogSign.svelte";
+    dialog.visible = false;
 </script>
 
 <head>
@@ -22,6 +23,11 @@
         {#if $currentScreen == "roadmap"}
             <div class="screenContainer" transition:fade={{ duration: 300 }}>
                 <RoadmapScreen />
+            </div>
+        {/if}
+        {#if dialog.visible}
+            <div class="dialogContainer" transition:fade={{ duration: 300 }}>
+                <DialogSign />
             </div>
         {/if}
     </div>

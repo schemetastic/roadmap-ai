@@ -5,7 +5,7 @@ import OpenAI from "openai";
 
 export async function GET(params) {
     let hasError = false;
-    let token = env("GITHUB_TOKEN");
+    let token = env.GITHUB_TOKEN;
     const endpoint = "https://models.inference.ai.azure.com";
     const modelName = "gpt-4o-mini";
 
