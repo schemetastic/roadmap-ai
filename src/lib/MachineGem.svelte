@@ -3,10 +3,7 @@
     let {
         xVariant = 0,
         yVariant = 0,
-        canClick = false,
-        title = "",
         opacity = 1,
-        description = "",
         cursor = "default",
         applyPos = true,
         xPos = 0,
@@ -19,19 +16,16 @@
         dialogType = "text",
     } = $props();
     import { dialog } from "../state.svelte";
-
-    function handleClick() {}
 </script>
 
-<button
-    on:click={handleClick}
+<figure
     class={`${hoverAnim} ${float ? "floating" : ""} ${bright ? "bright" : ""}`}
-    aria-label="Gem"
+    aria-label="Machine Gem component"
     style={`${applyPos ? `position: absolute; left: ${xPos}px; top:${yPos}px` : ""}; --bg-x: -${xVariant * 100}%; --bg-y: -${yVariant * 100}%; cursor: ${cursor}; opacity: ${opacity}; --float-delay: ${floatDelay}ms; z-index: ${zIndex};`}
-></button>
+></figure>
 
 <style>
-    button {
+    figure {
         background-image: url("/img/gems-machine-sprite.webp");
         background-size: 300% auto;
         background-position-x: var(--bg-x);
