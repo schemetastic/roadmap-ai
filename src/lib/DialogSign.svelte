@@ -1,6 +1,14 @@
 <script>
     import { onMount } from "svelte";
-    import { dialog, currentScreen, collectedGems } from "../state.svelte";
+    import {
+        dialog,
+        currentScreen,
+        collectedGems,
+        patchedHoles,
+        canClickSkillBtn,
+    } from "../state.svelte";
+    import MachineGem from "./MachineGem.svelte";
+
     onMount(() => {
         document.querySelector("#dialog").focus();
     });
@@ -20,6 +28,16 @@
             dialog.closeAction = "none";
             currentScreen.set("roadmap");
         }
+        if (dialog.closeAction == "insecurity-hole-1") {
+            dialog.closeAction = "none";
+            patchedHoles.first = true;
+            if (patchedHoles.second) canClickSkillBtn.set(true);
+        }
+        if (dialog.closeAction == "insecurity-hole-2") {
+            dialog.closeAction = "none";
+            patchedHoles.second = true;
+            if (patchedHoles.first) canClickSkillBtn.set(true);
+        }
         dialog.visible = false;
         dialog.type = "text";
     }
@@ -32,9 +50,31 @@
     </div>
     <div class="buttonContainer">
         <button class="button" style="--btn-font: 28px" on:click={handleClose}
-            >{dialog.type == "collect-gem" ? "Collect" : "Close"}</button
+            >{dialog.type == "collect-gem"
+                ? "Collect"
+                : dialog.type.startsWith("insecurity-hole")
+                  ? "Got it!"
+                  : "Close"}</button
         >
     </div>
+    {#if dialog.type == "insecurity-hole-1"}
+        <MachineGem
+            xVariant={0}
+            yVariant={2}
+            yPos={150}
+            xPos={150}
+            float={true}
+        />
+    {/if}
+    {#if dialog.type == "insecurity-hole-2"}
+        <MachineGem
+            xVariant={1}
+            yVariant={2}
+            yPos={150}
+            xPos={150}
+            float={true}
+        />
+    {/if}
 </div>
 
 <style>

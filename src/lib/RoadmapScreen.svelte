@@ -1,6 +1,7 @@
 <script>
     import Gem from "./Gem.svelte";
     import Lock from "./Lock.svelte";
+    import MachineGem from "./MachineGem.svelte";
     import {
         collectedGems,
         roadmap,
@@ -87,6 +88,14 @@
             xVariant={$collectedGems === 3 ? 1 : 0}
             playLevel={1}
         />
+    {:else}
+        <MachineGem
+            xVariant={0}
+            yVariant={2}
+            xPos={480}
+            yPos={90}
+            float={true}
+        />
     {/if}
     {#if !levels.twoComplete}
         <Lock
@@ -95,6 +104,15 @@
             xVariant={$collectedGems === 7 ? 1 : 0}
             playLevel={2}
         />
+    {:else}
+        <MachineGem
+            xVariant={1}
+            yVariant={2}
+            xPos={250}
+            yPos={260}
+            float={true}
+            floatDelay={400}
+        />
     {/if}
     {#if !levels.threeComplete}
         <Lock
@@ -102,6 +120,15 @@
             yPos={460}
             xVariant={$collectedGems === 12 ? 1 : 0}
             playLevel={3}
+        />
+    {:else}
+        <MachineGem
+            xVariant={2}
+            yVariant={2}
+            xPos={780}
+            yPos={460}
+            float={true}
+            floatDelay={800}
         />
     {/if}
 

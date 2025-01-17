@@ -8,7 +8,9 @@ export let currentScreen = writable("home");
 export const isLoading = writable(false);
 
 export let collectedGems = writable(0);
+
 export let canAdvance = writable(true);
+export let canClickSkillBtn = writable(true);
 export let canFinishGame = writable(false);
 
 export const levels = $state({
@@ -16,6 +18,11 @@ export const levels = $state({
     twoComplete: false,
     threeComplete: false,
     current: 0
+});
+
+export let patchedHoles = $state({
+    first: false,
+    second: false
 });
 
 export const dialog = $state({
